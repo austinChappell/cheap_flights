@@ -21,7 +21,31 @@ const Home: NextPage = () => {
 
       <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
         {isLoading && (
-          <p>Loading...</p>
+          <div className="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-700 opacity-75 flex flex-col items-center justify-center">
+            <svg
+              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              />
+            </svg>
+
+            <h2 className="text-center text-white text-xl font-semibold">Loading...</h2>
+            <p className="w-1/3 text-center text-white">This may take a few seconds, please don&apos;t close this page.</p>
+          </div>
         )}
 
         {!data && (
@@ -32,9 +56,47 @@ const Home: NextPage = () => {
         )}
 
         {data && (
-          <p>
-            {data.price}
-          </p>
+          <div>
+            <p className="text-xl font-extrabold">
+              {data.price}
+            </p>
+
+            <h2 className="mt-8 mb-2 text-lg font-semibold text-gray-900 dark:text-gray-800">
+              Flights Outbound
+            </h2>
+
+            <ul className="space-y-4 max-w-md list-none list-inside text-gray-800 dark:text-gray-600">
+              {data.outboundItinerary.segments.map(segment => (
+                <li key={segment.flightNumber} className="border p-4 rounded">
+                  <p>Flight Number: {segment.flightNumber}</p>
+
+                  <p>Flight Duration: {segment.flightDuration}</p>
+
+                  <p>Departure from {segment.departureAirport} at {segment.departureTime}</p>
+
+                  <p>Arrival at {segment.arrivalAirport} at {segment.arrivalTime}</p>
+                </li>
+              ))}
+            </ul>
+
+            <h2 className="mt-8 mb-2 text-lg font-semibold text-gray-900 dark:text-gray-800">
+              Flights Inbound
+            </h2>
+
+            <ul className="space-y-4 max-w-md list-none list-inside text-gray-800 dark:text-gray-600">
+              {data.inboundItinerary.segments.map(segment => (
+                <li key={segment.flightNumber} className="border p-4 rounded">
+                  <p>Flight Number: {segment.flightNumber}</p>
+
+                  <p>Flight Duration: {segment.flightDuration}</p>
+
+                  <p>Departure from {segment.departureAirport} at {segment.departureTime}</p>
+
+                  <p>Arrival at {segment.arrivalAirport} at {segment.arrivalTime}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </main>
     </>
