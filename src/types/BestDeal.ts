@@ -4,7 +4,7 @@ export interface EnhancedFlight extends Flight {
   enhancedSegments: EnhancedSegment[];
 }
 
-interface NormalizedSegment {
+export interface NormalizedSegment {
   airline: string;
   arrivalAirport: string;
   arrivalTime: string;

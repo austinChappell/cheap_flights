@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { trpc } from "../utils/trpc";
 import CheapFlightsForm from "../components/CheapFlightsForm";
+import FlightSegmentCard from "../components/FlightSegmentCard";
 
 const Home: NextPage = () => {
   const {
@@ -9,6 +10,7 @@ const Home: NextPage = () => {
     error,
     isLoading,
     mutate: findCheapestFlight,
+    reset,
   } = trpc.flights.cheapestFlight.useMutation()
 
   return (
@@ -67,15 +69,10 @@ const Home: NextPage = () => {
 
             <ul className="space-y-4 max-w-md list-none list-inside text-gray-800 dark:text-gray-600">
               {data.outboundItinerary.segments.map(segment => (
-                <li key={segment.flightNumber} className="border p-4 rounded">
-                  <p>Flight Number: {segment.flightNumber}</p>
-
-                  <p>Flight Duration: {segment.flightDuration}</p>
-
-                  <p>Departure from {segment.departureAirport} at {segment.departureTime}</p>
-
-                  <p>Arrival at {segment.arrivalAirport} at {segment.arrivalTime}</p>
-                </li>
+                <FlightSegmentCard
+                  key={segment.flightNumber}
+                  segment={segment}
+                />
               ))}
             </ul>
 
@@ -85,17 +82,20 @@ const Home: NextPage = () => {
 
             <ul className="space-y-4 max-w-md list-none list-inside text-gray-800 dark:text-gray-600">
               {data.inboundItinerary.segments.map(segment => (
-                <li key={segment.flightNumber} className="border p-4 rounded">
-                  <p>Flight Number: {segment.flightNumber}</p>
-
-                  <p>Flight Duration: {segment.flightDuration}</p>
-
-                  <p>Departure from {segment.departureAirport} at {segment.departureTime}</p>
-
-                  <p>Arrival at {segment.arrivalAirport} at {segment.arrivalTime}</p>
-                </li>
+                <FlightSegmentCard
+                  key={segment.flightNumber}
+                  segment={segment}
+                />
               ))}
             </ul>
+
+            <button
+              className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mt-6"
+              onClick={reset}
+              type="button"
+            >
+              Search Again
+            </button>
           </div>
         )}
       </main>
