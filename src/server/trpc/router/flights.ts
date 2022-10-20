@@ -14,6 +14,7 @@ import { formatMoney } from "../../../utils/formatMoney";
 import axios from "axios";
 
 export interface CheapestFlightArgs {
+  airlinesToExclude: string[];
   arrivalAirports: string[];
   datePairs: [departureDate: string, returnDate: string][];
   departureAirports: string[];
@@ -23,6 +24,7 @@ export interface CheapestFlightArgs {
 }
 
 const cheapestFlightPayload = z.object({
+  airlinesToExclude: z.array(z.string().length(2)),
   arrivalAirports: z.array(z.string().length(3)).min(1).max(2),
   datePairs: z.array(z.tuple([
     z.string(),
@@ -256,6 +258,7 @@ const findCheapestFlight = async (args: CheapestFlightArgs) => {
       );
 
       const deal = await findBestDeal({
+        airlinesToExclude: args.airlinesToExclude,
         fromAirport: option.airports[0],
         toAirport: option.airports[1],
         departureDate: option.dates[0],

@@ -47,6 +47,7 @@ const CheapFlightsForm: FC<Props> = ({
     const formElements: FormElements = (evt.target as unknown as any).elements;
 
     const payload: CheapestFlightArgs = {
+      airlinesToExclude: formElements.airlinesToExclude.value.split(',').filter(Boolean),
       arrivalAirports: formElements.arrivalAirports.value.split(';'),
       datePairs: formElements.datePairs.value.split(';').map(pair => pair.split(',')) as CheapestFlightArgs['datePairs'],
       departureAirports: formElements.departureAirports.value.split(';'),
@@ -60,6 +61,26 @@ const CheapFlightsForm: FC<Props> = ({
 
   return (
     <form onSubmit={handleSubmit}>
+      <Label htmlFor={"airlinesToExclude"}>
+        Airlines to Exclude (comma separated)
+      </Label>
+
+      <Input
+        name="airlinesToExclude"
+        placeholder="AA,AS"
+        type="text"
+      />
+
+      {maybeRenderErrorMessage(error, 'airlinesToExclude')}
+
+      <p className="text-slate-400 text-xs">
+        B6 — jetblue
+        <br />
+        F9 — frontier
+        <br />
+        NK — spirit
+      </p>
+
       <Label htmlFor={"departureAirports"}>
         Depart From (choose up to 2, semicolon separated)
       </Label>
