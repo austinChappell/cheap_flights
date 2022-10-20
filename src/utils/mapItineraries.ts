@@ -1,6 +1,5 @@
 import { Bound, FlightsResponse } from '../types/FlightsResponse';
 import {
-  EnhancedFlight,
   EnhancedSegment,
   ReducedItinerary,
 } from '../types/BestDeal';
@@ -19,22 +18,18 @@ export const mapItineraries =
   (itinerary: Bound): ReducedItinerary => {
     const flight = args.flights[itinerary.flight];
 
-    const enhancedSegments: EnhancedSegment[] =
-      flight.segments.map<EnhancedSegment>((segment) => {
-        const airlineInfo = args.airlines[segment.airline];
-
+    const enhancedSegments: EnhancedSegment[] = flight
+      ? flight.segments.map<EnhancedSegment>((segment) => {
         return {
           ...segment,
-          airlineInfo: args.airlines[segment.airline],
+          airlineInfo: args.airlines[segment.airline] ?? {
+            name: ''
+          },
         };
-      });
+      })
+      : [];
 
-    const enhancedFlight: EnhancedFlight = {
-      ...flight,
-      enhancedSegments,
-    };
-
-    const firstAirline = enhancedSegments[0].airlineInfo.name;
+    const firstAirline = enhancedSegments?.[0]?.airlineInfo.name;
 
     const allAirlinesMatch = enhancedSegments.every(
       (segment) => segment.airlineInfo.name === firstAirline,
@@ -71,16 +66,16 @@ export const mapItineraries =
     return {
       id: itinerary.flight,
       segments: segmentsOnItinerary.map((segment) => ({
-        airline: args.airlines[segment.airline].name,
-        arrivalAirport: args.airports[segment.arrival.airport].name,
+        airline: args.airlines[segment.airline]?.name ?? '',
+        arrivalAirport: args.airports[segment.arrival.airport]?.name ?? '',
         arrivalTime: formatDateWithTimezone(segment.arrival.time),
-        departureAirport: args.airports[segment.departure.airport].name,
+        departureAirport: args.airports[segment.departure.airport]?.name ?? '',
         departureTime: formatDateWithTimezone(segment.departure.time),
         flightDuration: convertNumberToTimeString(segment.duration / 100),
         flightNumber: segment.flight_number,
       })),
       summary: {
-        airline,
+        airline: airline ?? '',
         arrivalAirport,
         arrivalTime: formatDateWithTimezone(arrivalSegment?.arrival.time),
         bestPriceOverall: '',
