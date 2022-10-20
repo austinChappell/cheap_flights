@@ -59,35 +59,42 @@ const Home: NextPage = () => {
 
         {data && (
           <div>
-            <p className="text-xl font-extrabold">
+            <p className="text-4xl font-extrabold">
               {data.price}
             </p>
 
-            <h2 className="mt-8 mb-2 text-lg font-semibold text-gray-900 dark:text-gray-800">
-              Flights Outbound
-            </h2>
+            <div className="flex flex-wrap gap-x-16">
+              <div>
+                <h2 className="mt-8 mb-2 text-lg font-semibold text-gray-900 dark:text-gray-800">
+                  Flights Outbound
+                </h2>
 
-            <ul className="space-y-4 max-w-md list-none list-inside text-gray-800 dark:text-gray-600">
-              {data.outboundItinerary.segments.map(segment => (
-                <FlightSegmentCard
-                  key={segment.flightNumber}
-                  segment={segment}
-                />
-              ))}
-            </ul>
+                <ul className="space-y-4 max-w-md list-none list-inside text-gray-800 dark:text-gray-600">
+                  {data.outboundItinerary.segments.map(segment => (
+                    <FlightSegmentCard
+                      key={segment.flightNumber}
+                      segment={segment}
+                    />
+                  ))}
+                </ul>
+              </div>
 
-            <h2 className="mt-8 mb-2 text-lg font-semibold text-gray-900 dark:text-gray-800">
-              Flights Inbound
-            </h2>
+              <div>
+                <h2 className="mt-8 mb-2 text-lg font-semibold text-gray-900 dark:text-gray-800">
+                  Flights Inbound
+                </h2>
 
-            <ul className="space-y-4 max-w-md list-none list-inside text-gray-800 dark:text-gray-600">
-              {data.inboundItinerary.segments.map(segment => (
-                <FlightSegmentCard
-                  key={segment.flightNumber}
-                  segment={segment}
-                />
-              ))}
-            </ul>
+                <ul className="space-y-4 max-w-md list-none list-inside text-gray-800 dark:text-gray-600">
+                  {data.inboundItinerary.segments.map(segment => (
+                    <FlightSegmentCard
+                      key={segment.flightNumber}
+                      segment={segment}
+                    />
+                  ))}
+                </ul>
+              </div>
+            </div>
+
 
             <a
               className="shadow border border-purple-500 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mt-6"

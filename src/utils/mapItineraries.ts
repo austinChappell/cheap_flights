@@ -67,6 +67,7 @@ export const mapItineraries =
       id: itinerary.flight,
       segments: segmentsOnItinerary.map((segment) => ({
         airline: args.airlines[segment.airline]?.name ?? '',
+        airlineCode: segment.airline ?? '',
         arrivalAirport: args.airports[segment.arrival.airport]?.name ?? '',
         arrivalTime: formatDateWithTimezone(segment.arrival.time),
         departureAirport: args.airports[segment.departure.airport]?.name ?? '',
