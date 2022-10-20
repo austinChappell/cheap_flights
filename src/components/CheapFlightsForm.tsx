@@ -1,6 +1,7 @@
 import { FC, FormEvent, useCallback } from "react";
 import { TRPCClientErrorLike } from "@trpc/client";
 import { CheapestFlightArgs } from "../server/trpc/router/flights";
+import Label from "./Label";
 
 type FormElements = Record<keyof CheapestFlightArgs, { value: string }>
 
@@ -58,12 +59,13 @@ const CheapFlightsForm: FC<Props> = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+      <Label htmlFor={"departureAirports"}>
         Depart From (choose up to 2, semicolon separated)
-      </label>
+      </Label>
 
       <input
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="departureAirports"
         name="departureAirports"
         placeholder="DFW;DAL"
         type="text"
@@ -71,12 +73,13 @@ const CheapFlightsForm: FC<Props> = ({
 
       {maybeRenderErrorMessage(error, 'departureAirports')}
 
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+      <Label htmlFor="arrivalAirports">
         Arrive At (choose up to 2, semicolon separated)
-      </label>
+      </Label>
 
       <input
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="arrivalAirports"
         name="arrivalAirports"
         placeholder="DFW;DAL"
         type="text"
@@ -84,12 +87,13 @@ const CheapFlightsForm: FC<Props> = ({
 
       {maybeRenderErrorMessage(error, 'arrivalAirports')}
 
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+      <Label htmlFor="datePairs">
         Date Pairs (up to 6) (pairs semicolon separated, depart return comma separated)
-      </label>
+      </Label>
 
       <input
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="datePairs"
         name="datePairs"
         placeholder="2022-11-01,2022-11-07;2022-11-10,2022-11-17"
         type="text"
@@ -97,12 +101,13 @@ const CheapFlightsForm: FC<Props> = ({
 
       {maybeRenderErrorMessage(error, 'datePairs')}
 
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+      <Label htmlFor="flexDate">
         Date Flexible?
-      </label>
+      </Label>
 
       <input
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="flexDate"
         name="flexDate"
         placeholder="1"
         type="number"
@@ -110,11 +115,13 @@ const CheapFlightsForm: FC<Props> = ({
 
       {maybeRenderErrorMessage(error, 'flexDate')}
 
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+      <Label htmlFor="numOfAdults">
         Number of Adults
-      </label>
+      </Label>
+
       <input
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="numOfAdults"
         name="numOfAdults"
         placeholder="Number of Adults"
         type="number"
@@ -122,11 +129,13 @@ const CheapFlightsForm: FC<Props> = ({
 
       {maybeRenderErrorMessage(error, 'numOfAdults')}
 
-      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+      <Label htmlFor="numOfChildren">
         Number of Children
-      </label>
+      </Label>
+
       <input
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="numOfChildren"
         name="numOfChildren"
         placeholder="Number of Children"
         type="number"
