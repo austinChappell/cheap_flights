@@ -34,6 +34,23 @@ const cheapestFlightPayload = z.object({
   numOfChildren: z.number().min(0),
 });
 
+const getBookingUrl = ({
+  arrivalAirport,
+  departureAirport,
+  departureDate,
+  numberOfAdults,
+  numberOfChildren,
+  returnDate,
+}: {
+  arrivalAirport: string;
+  departureAirport: string;
+  departureDate: string;
+  numberOfAdults: string;
+  numberOfChildren: string;
+  returnDate: string;
+}) =>
+  `https://skiplagged.com/flights/${departureAirport}/${arrivalAirport}/${departureDate}/${returnDate}?adults=${numberOfAdults}&children=${numberOfChildren}`
+
 export const flightsRouter = router({
   cheapestFlight: publicProcedure
     .input(cheapestFlightPayload)
@@ -127,6 +144,14 @@ const findBestDeal = async (args: FindDealArgs): Promise<BestDeal | null> => {
   );
 
   return {
+    bookingUrl: getBookingUrl({
+      arrivalAirport: args.toAirport,
+      departureAirport: args.fromAirport,
+      departureDate: args.departureDate,
+      numberOfAdults: `${args.numOfAdults ?? 0}`,
+      numberOfChildren: `${args.numOfChildren ?? 0}`,
+      returnDate: args.returnDate,
+    }),
     id: `${bestInbound.id}-${bestOutbound.id}`,
     price: formatMoney({ amountInCents: bestOverallPrice }),
     priceInCents: bestOverallPrice,

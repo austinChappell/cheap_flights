@@ -2,6 +2,7 @@ import { FC, FormEvent, useCallback } from "react";
 import { TRPCClientErrorLike } from "@trpc/client";
 import { CheapestFlightArgs } from "../server/trpc/router/flights";
 import Label from "./Label";
+import Input from "./Input";
 
 type FormElements = Record<keyof CheapestFlightArgs, { value: string }>
 
@@ -63,9 +64,7 @@ const CheapFlightsForm: FC<Props> = ({
         Depart From (choose up to 2, semicolon separated)
       </Label>
 
-      <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="departureAirports"
+      <Input
         name="departureAirports"
         placeholder="DFW;DAL"
         type="text"
@@ -77,9 +76,7 @@ const CheapFlightsForm: FC<Props> = ({
         Arrive At (choose up to 2, semicolon separated)
       </Label>
 
-      <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="arrivalAirports"
+      <Input
         name="arrivalAirports"
         placeholder="DFW;DAL"
         type="text"
@@ -91,9 +88,7 @@ const CheapFlightsForm: FC<Props> = ({
         Date Pairs (up to 6) (pairs semicolon separated, depart return comma separated)
       </Label>
 
-      <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="datePairs"
+      <Input
         name="datePairs"
         placeholder="2022-11-01,2022-11-07;2022-11-10,2022-11-17"
         type="text"
@@ -105,9 +100,7 @@ const CheapFlightsForm: FC<Props> = ({
         Date Flexible?
       </Label>
 
-      <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="flexDate"
+      <Input
         name="flexDate"
         placeholder="1"
         type="number"
@@ -119,9 +112,7 @@ const CheapFlightsForm: FC<Props> = ({
         Number of Adults
       </Label>
 
-      <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="numOfAdults"
+      <Input
         name="numOfAdults"
         placeholder="Number of Adults"
         type="number"
@@ -133,9 +124,7 @@ const CheapFlightsForm: FC<Props> = ({
         Number of Children
       </Label>
 
-      <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="numOfChildren"
+      <Input
         name="numOfChildren"
         placeholder="Number of Children"
         type="number"

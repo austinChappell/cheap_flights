@@ -89,8 +89,16 @@ const Home: NextPage = () => {
               ))}
             </ul>
 
+            <a
+              className="shadow border border-purple-500 bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mt-6"
+              href={data.bookingUrl}
+              type="button"
+            >
+              Book Flight
+            </a>
+
             <button
-              className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded mt-6"
+              className="ml-2 shadow border border-purple-500 text-purple-500 hover:bg-purple-400 hover:text-white focus:shadow-outline focus:outline-none font-bold py-2 px-4 rounded mt-6"
               onClick={reset}
               type="button"
             >

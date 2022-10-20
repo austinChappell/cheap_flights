@@ -49,6 +49,7 @@ export interface FindDealArgs {
 }
 
 export interface BestDeal {
+  bookingUrl: string;
   id: string;
   price: string;
   priceInCents: number;
