@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { NormalizedSegment } from "../types/BestDeal";
+import { formatDateWithTimezone } from "../utils/formatDateWithTimezone";
 
 interface Props {
   segment: NormalizedSegment;
@@ -24,11 +25,11 @@ const FlightSegmentCard: FC<Props> = ({
 
       <p><Strong>Departure Airport</Strong> {segment.departureAirport}</p>
 
-      <p><Strong>Departure Time</Strong> {segment.departureTime}</p>
+      <p><Strong>Departure Time</Strong> {formatDateWithTimezone(segment.departureTime)}</p>
 
       <p><Strong>Arrival Airport</Strong> {segment.arrivalAirport}</p>
 
-      <p><Strong>Arrival Time</Strong> {segment.arrivalTime}</p>
+      <p><Strong>Arrival Time</Strong> {formatDateWithTimezone(segment.arrivalTime)}</p>
     </li>
   )
 }

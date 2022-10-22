@@ -14,6 +14,7 @@ import { formatMoney } from "../../../utils/formatMoney";
 import axios from "axios";
 import { getOffers } from "../../../services/amadeus";
 import { OffersResponse, Segment } from "../../../types/Amadeus";
+import { convertStringDuration } from "../../../utils/convertNumberToTimeString";
 
 export interface CheapestFlightArgs {
   airlinesToExclude: string[];
@@ -175,7 +176,7 @@ const normalizeOffer = (offer: OffersResponse): BestDeal => {
     arrivalTime: segment.arrival.at,
     departureAirport: segment.departure.iataCode,
     departureTime: segment.departure.at,
-    flightDuration: segment.duration,
+    flightDuration: convertStringDuration(segment.duration),
     flightNumber: segment.number,
   })
 
