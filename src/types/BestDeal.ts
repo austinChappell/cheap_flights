@@ -52,6 +52,7 @@ export interface FindDealArgs {
 export interface BestDeal {
   bookingUrl: string;
   id: string;
+  numberOfBookableSeats: number;
   price: string;
   // priceInCents: number;
   outboundItinerary: ReducedItinerary;

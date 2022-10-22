@@ -63,6 +63,10 @@ const Home: NextPage = () => {
               {data.price}
             </p>
 
+            <p className="text-2xl font-bold">
+              {data.numberOfBookableSeats} seats available
+            </p>
+
             <div className="flex flex-wrap gap-x-16">
               <div>
                 <h2 className="mt-8 mb-2 text-lg font-semibold text-gray-900 dark:text-gray-800">

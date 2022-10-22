@@ -188,6 +188,7 @@ const normalizeOffer = (offer: OffersResponse): BestDeal => {
       segments: inboundItinerary?.segments.map(mapSegment) ?? [],
       // summary: {} as any,
     },
+    numberOfBookableSeats: offer.numberOfBookableSeats,
     outboundItinerary: {
       id: '',
       segments: outboundItinerary?.segments.map(mapSegment) ?? [],
@@ -195,7 +196,7 @@ const normalizeOffer = (offer: OffersResponse): BestDeal => {
       //
       // },
     },
-    price: offer.price.total,
+    price: `$${offer.price.total}`,
     // priceInCents: 0,
   }
 }
