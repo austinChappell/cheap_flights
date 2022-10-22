@@ -15,9 +15,9 @@ const FlightSegmentCard: FC<Props> = ({
 }) => {
   return (
     <li key={segment.flightNumber} className="border p-4 rounded">
-      <p><Strong>Airline:</Strong> {segment.airline}</p>
+      <p><Strong>Airline:</Strong> {segment.airline?.commonName}</p>
 
-      <p><Strong>Airline Code:</Strong> {segment.airlineCode}</p>
+      <p><Strong>Airline Code:</Strong> {segment.airline?.iataCode}</p>
 
       <p><Strong>Flight Number:</Strong> {segment.flightNumber}</p>
 

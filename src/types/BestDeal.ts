@@ -1,12 +1,7 @@
-import { Airline, Flight, Segment } from './FlightsResponse';
-
-export interface EnhancedFlight extends Flight {
-  enhancedSegments: EnhancedSegment[];
-}
+import { Airline } from "./Amadeus";
 
 export interface NormalizedSegment {
-  airline: string;
-  airlineCode: string;
+  airline: Airline | null;
   arrivalAirport: string;
   arrivalTime: string;
   departureAirport: string;
@@ -15,38 +10,9 @@ export interface NormalizedSegment {
   flightNumber: string;
 }
 
-interface ReducedItinerarySummary {
-  airline: string;
-  arrivalAirport: string;
-  arrivalTime: string;
-  bestPriceOverall: string;
-  departureAirport: string;
-  departureTime: string;
-  minRoundTripPrice: string;
-  minRoundTripPriceInCents: number;
-  oneWayPrice: string;
-  oneWayPriceInCents: number;
-}
-
 export interface ReducedItinerary {
   id: string;
   segments: NormalizedSegment[];
-  // summary: ReducedItinerarySummary;
-}
-
-export interface EnhancedSegment extends Segment {
-  airlineInfo: Airline;
-}
-
-export interface FindDealArgs {
-  airlinesToExclude?: string[];
-  departureDate: string;
-  flexDate?: number;
-  fromAirport: string;
-  numOfAdults: number;
-  numOfChildren: number;
-  returnDate: string;
-  toAirport: string;
 }
 
 export interface BestDeal {
@@ -54,7 +20,6 @@ export interface BestDeal {
   id: string;
   numberOfBookableSeats: number;
   price: string;
-  // priceInCents: number;
   outboundItinerary: ReducedItinerary;
   inboundItinerary: ReducedItinerary;
 }

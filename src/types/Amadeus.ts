@@ -105,3 +105,10 @@ export interface TravelerPricingPrice {
 }
 
 export type PossibleDatesArgument = [departureDate: string, returnDate: string];
+
+export interface Airline {
+  businessName: string;
+  commonName: string;
+  iataCode: string;
+  type: string;
+}
