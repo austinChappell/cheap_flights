@@ -12,7 +12,7 @@ export interface NormalizedSegment {
   departureAirport: string;
   departureTime: string;
   flightDuration: string;
-  flightNumber: number;
+  flightNumber: string;
 }
 
 interface ReducedItinerarySummary {
@@ -31,7 +31,7 @@ interface ReducedItinerarySummary {
 export interface ReducedItinerary {
   id: string;
   segments: NormalizedSegment[];
-  summary: ReducedItinerarySummary;
+  // summary: ReducedItinerarySummary;
 }
 
 export interface EnhancedSegment extends Segment {
@@ -53,7 +53,7 @@ export interface BestDeal {
   bookingUrl: string;
   id: string;
   price: string;
-  priceInCents: number;
+  // priceInCents: number;
   outboundItinerary: ReducedItinerary;
   inboundItinerary: ReducedItinerary;
 }

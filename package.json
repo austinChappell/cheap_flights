@@ -30,6 +30,7 @@
     "@types/react-dom": "18.0.5",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
+    "amadeus": "^7.0.0",
     "autoprefixer": "^10.4.7",
     "eslint": "8.22.0",
     "eslint-config-next": "12.3.1",
